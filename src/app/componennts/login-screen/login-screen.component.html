@@ -1,0 +1,13 @@
+<div class="loading" *ngIf="!isLoeaded">Loading&#8230;</div>
+<div class="body">
+    <h1>Login Page</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="form-login" (click)="res = true">
+        <input type="email" formControlName="username" placeholder="Email" [ngClass]="username?.invalid && username?.touched ? 'border-red': ''">
+        <input type="password" formControlName="password" placeholder="Password" [ngClass]="password?.invalid && password?.touched ? 'border-red': ''">
+        <button type="submit">Submit</button>
+    </form>
+    <p *ngIf="!res" class="wrong-input">User name or password is wrong</p>
+    <div class="sign-up-buton" routerLink="/signup-page" routerLinkActive="active">
+        to sign up click here
+    </div>
+</div>

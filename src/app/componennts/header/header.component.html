@@ -1,0 +1,11 @@
+<div class="body">
+    <div class="name-project">
+        <p>
+          Dog Barber Shop
+        </p>
+      </div>
+      <div class="button">
+        <p *ngIf="!logedIn">Login</p>
+        <p *ngIf="logedIn" (click)="logOut()">Log Out</p>
+      </div>
+</div>

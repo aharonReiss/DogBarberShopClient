@@ -1,0 +1,26 @@
+<div class="loading" *ngIf="!isLoeaded">Loading&#8230;</div>
+<div class="body">
+    <div class="add-queue-button" (click)="displayNonePopUp = true">To add Queue click here</div>
+    <div class="add-queue" *ngIf="displayNonePopUp">
+      <div class="x" (click)="displayNonePopUp = false">X</div>
+      <h5>Please make an appointment at the barbershop</h5>
+      <div class="input-date">
+        <input type="date" [(ngModel)]="NewQueueTime">
+        <select name="" id="" (change)="onClickHour($event)">
+          <option value = {{item}} *ngFor="let item of arryOfTime;let i = index">{{item}}</option>
+        </select>
+      </div>
+      <button (click)="onAddItem()">Add</button>
+    </div>
+    <app-queue-detail-screen></app-queue-detail-screen>
+    <table class="list-queue">
+        <tr>
+          <th (click)="onSortArray('name')">Name</th>
+          <th (click)="onSortArray('queueTime')">Queue time</th>
+        </tr>
+        <tr *ngFor="let item of que; let i = index" (click)="onClickItem(item)" class="list-q">
+          <td>{{ item.name }}</td>
+          <td>{{item.queueTime | date:'d/M/yyyy, h:mm a'}}</td>
+        </tr>
+      </table>
+</div>

@@ -1,0 +1,31 @@
+<div class="body" *ngIf="displayNonePopUp">
+    <div class="x" (click)="displayNonePopUp = false">X</div>
+    <h1 class="queueDetailHeader">Queue Detail</h1>
+    <table>
+           <tr>
+              <th>Creation time:</th>
+              <td>{{QueueDetail.creationQueueTime |  date:'d/M/yyyy, h:mm a'}}</td>
+            </tr>
+            <tr>
+                <th>Queue time:</th>
+                <td *ngIf="isUpdateSituation"><div class="input-date">
+                    <input type="date" [(ngModel)]="NewQueueTime">
+                    <select name="" id="" (change)="onClickHour($event)">
+                      <option value = {{item}} *ngFor="let item of arryOfTime;let i = index">{{item}}</option>
+                    </select>
+                  </div>
+                </td>
+                <td *ngIf="!isUpdateSituation">{{QueueDetail.queueTime |  date:'d/M/yyyy, h:mm a'}}</td>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td>{{QueueDetail.name}}</td>
+            </tr>
+    </table>
+    <div class="buttons" *ngIf="this.user.userId == QueueDetail.userId">
+        <button (click)="onUpdateItem()" *ngIf="isUpdateSituation">Update</button>
+        <button (click)="onDeleteItem()">Delete</button>
+    </div>
+    <p class="update-the-queue-date" (click)="isUpdateSituation = true"
+    [ngClass]="this.user.userId == QueueDetail.userId && !isUpdateSituation ? '' : 'on-update-the-queue-date'">to update the tate please click here</p>
+</div>
